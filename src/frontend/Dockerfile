@@ -1,17 +1,19 @@
-# Use base node 12.16.2-alpine image from Docker hub
-FROM node:12.16.2-alpine 
+FROM node:12.16.2-alpine AS base
+FROM base AS build
 
-WORKDIR /frontend
-
-# Copy package.json and install dependencies
+WORKDIR /www
 COPY package*.json ./
 RUN npm install
 
-# Copy rest of the application csource code
-COPY . .
+# copy node_modules from the build image
+FROM base
 
-# Run app.js with debugging port when container launches
-ENTRYPOINT ["node", "--inspect=9229", "app.js"]
+WORKDIR /www
+COPY --from=build /www/node_modules node_modules
+ADD . /www
 
-# Comment above and uncomment below to run app.js without debugger port when container launches
-# ENTRYPOINT ["node", "app.js"]
+# Run app.js with debugging port and hotr-eloading when container launches
+CMD ["npx", "nodemon", "--inspect=9229", "app.js"]
+
+# Comment above and uncomment below to run app.js without debugger port and hotr-eloading when container launches
+# CMD ["node", "app.js"]
