@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node --inspect=9229 app.js"
   },
-  "author": "Google Inc.",
+  "author": "Chuka Ofili",
   "license": "0BSD",
   "devDependencies": {
     "body-parser": "1.19.0",
@@ -14,5 +14,14 @@
     "mongodb": "3.5.7",
     "mongoose": "5.9.16",
     "nodemon": "^2.0.4"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "test/*",
+      "docs/*",
+      "node_modules/*"
+    ],
+    "ext": "js"
   }
 }
