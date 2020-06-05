@@ -8,8 +8,14 @@ build:
   artifacts:
   - image: nodejs-guestbook-backend
     context: src/backend
+    sync:
+      infer:
+      - '**/*'
   - image: nodejs-guestbook-frontend
     context: src/frontend
+    sync:
+      infer:
+      - '**/*'
 # defines the Kubernetes manifests to deploy on each run
 deploy:
   kubectl:

@@ -1,9 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const Message = require('./messages')
+const Message = require('./messages');
+const { name, version } = require('../package.json');
 
 const router = express.Router();
 router.use(bodyParser.json());
+
+router.get('/', (req, res) => {
+    res.status(200).json({message: 'ok', name, version});
+});
 
 // Handles GET requests to /messages
 router.get('/messages', (req, res) => {
