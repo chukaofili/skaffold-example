@@ -5,20 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
-      "request": "attach",
-      "name": "backend",
-      "port": 9229,
-      "localRoot": "${workspaceFolder}/src/backend",
-      "remoteRoot": "/www"
-    },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "frontend",
-      "port": 9230,
-      "localRoot": "${workspaceFolder}/src/frontend",
-      "remoteRoot": "/www"
+      "name": "Run/Debug on Kubernetes",
+      "type": "cloudcode.kubernetes",
+      "request": "launch",
+      "skaffoldConfig": "${workspaceFolder}/skaffold.yaml",
+      "watch": true,
+      "cleanUp": true,
+      "portForward": true
     }
   ]
 }
